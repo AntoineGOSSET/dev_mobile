@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <title>Airbnb</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+            integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+            crossorigin=""/>
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" width="30" height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Rechercher">
+            </form>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                
+                <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Devenez hôte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Listes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Voyages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Aide</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#">
+                            <img src="profil.png" width="30" height="30" alt="">
+                    </a>
+                </li>
+                </ul>
+                
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col" style="margin:1rem">
+
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="btn btn-secondary" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Liste</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-secondary" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Carte</a>
+                    </li>
+                </ul>
+                
+                <div class="form-group">
+
+                        
+
+                    <h5 for="exampleFormControlSelect1">Voyageurs</h5>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Adultes</option>
+                        <option>Enfants</option>
+                        <option>Bébés</option>
+                    </select>
+
+                    
+                    <h5 for="formControlRange">Prix</h5>
+                    <input type="range" class="form-control-range" id="formControlRange">
+                    
+                    <h5 for="formControlRange">Type de logement</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Logement entier
+                        </label>
+                        <p class="card-text"><small class="text-muted">Un logement entier, rien que pour vous.</small></p>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Chambre privée
+                        </label>
+                        <p class="card-text"><small class="text-muted">Disposez de votre propre chambre et partagez les pesaces communs.</small></p>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Chambre partagée
+                        </label>
+                        <p class="card-text"><small class="text-muted">Votre epsace est partagé(ex. une chambre commune).</small></p>
+                    </div>
+                    
+                    <h5 for="formControlRange">Réservation instantanée</h5>
+                    
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        Logements que vous pouvez réserver sans attendre l'approbation de l'hôte.
+                    </div>
+                       
+                    
+                    
+                    <h5 for="formControlRange">Type de voyage</h5>
+
+                    <h6 for="formControlRange">Pour les familles</h6>
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        Découvrez des logements 5 étoiles pour les familles qui disposent notamment d'une cuisine et d'une TV.
+                    </div>
+
+                    <h6 for="formControlRange">Pour les voyages pro</h6>
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        Découvrez des logements avec d'excellentes évaluations, espace de travail, Wi-Fi et arrivée autonome.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-8">
+                <div class="tab-content" id="myTabContent">
+
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div id="mapid"></div></div>
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    
+
+
+                        <div class="row">
+                            <div class="card" id="cardImb">
+                                <img class="card-img-top" src="https://a0.muscache.com/im/pictures/30067085/dff6fa7f_original.jpg?aki_policy=xx_large" alt="Card image cap">
+                                <div class="card-body">
+                                    <h6 class="card-title">LOGEMENT ENTIER 1 LIT</h5>
+                                    <p class="card-text">appartement spa hypercentre Nantes</p>
+                                    <p class="card-text"><small class="text-muted">65€ par nuit . Annulation gratuite</small></p>
+                                
+                                </div>
+                            </div>
+
+                            <div class="card" id="cardImb">
+                                    <img class="card-img-top" src="https://a0.muscache.com/im/pictures/162d5d60-e3cb-45df-9f64-adb0018cc5b7.jpg?aki_policy=xx_large" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h6 class="card-title">LOGEMENT ENTIER 2 LITS</h5>
+                                        <p class="card-text">Charmant appart Vue exceptionnelle</p>
+                                        <p class="card-text"><small class="text-muted">53€ par nuit . Annulation gratuite</small></p>
+                                
+                                    </div>
+                            </div>
+                            
+                            <div class="card" id="cardImb">
+                                    <img class="card-img-top" src="https://a0.muscache.com/im/pictures/89d42934-aba3-4aa0-b452-a1efc37986be.jpg?aki_policy=xx_large" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h6 class="card-title">LOGEMENT ENTIER 1 LIT</h5>
+                                        <p class="card-text">STUDIO IDEAL HYPER CENTRE</p>
+                                        <p class="card-text"><small class="text-muted">30€ par nuit . Annulation gratuite</small></p>
+                                        
+                                    </div>
+                            </div>
+                            <div class="card" id="cardImb">
+                                    <img class="card-img-top" src="https://a0.muscache.com/im/pictures/a5d90adb-cf4b-4e11-95b9-3ee903995168.jpg?aki_policy=xx_large" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h6 class="card-title">LOGEMENT ENTIER 1 LIT</h5>
+                                        <p class="card-text">Chambre dans maison atypique au calme - Zola</p>
+                                        <p class="card-text"><small class="text-muted">20€ par nuit . Annulation gratuite</small></p>
+                                    
+                                    </div>
+                            </div>
+                            <div class="card" id="cardImb">
+                                    <img class="card-img-top" src="https://a0.muscache.com/im/pictures/58999174/5555f645_original.jpg?aki_policy=xx_large" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h6 class="card-title">LOGEMENT ENTIER 1 LIT</h5>
+                                        <p class="card-text">La Cabane du Capitaine Némo</p>
+                                        <p class="card-text"><small class="text-muted">58€ par nuit . Annulation gratuite</small></p>
+                                        
+                                    </div>
+                            </div>
+                            <div class="card" id="cardImb">
+                                    <img class="card-img-top" src="https://a0.muscache.com/im/pictures/6311fabe-a91c-497a-bc02-d18dc61e3a9e.jpg?aki_policy=xx_large" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h6 class="card-title">LOGEMENT ENTIER 1 LIT</h5>
+                                        <p class="card-text">Havre de paix en hyper centre. Proche Chateau</p>
+                                        <p class="card-text"><small class="text-muted">38€ par nuit . Annulation gratuite</small></p>
+                                
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- jQuery en premier, puis Popper.js et enfin Bootstrap JS -->
+        <script src="jquery-3.2.1.slim_.min_.js"></script>
+        <script src="popper.min_.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" 
+            integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+            crossorigin=""></script>
+            <script src="index.js"></script>
+    </body>
+</HTML>
