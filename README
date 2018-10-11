@@ -1,0 +1,8 @@
+Ce projet essai de reprendre l'aspect du site airbnb,
+
+Il affiche une liste de filtre sur la partie droite,
+sur la partie gauche nous pouvons afficher la liste des biens disponnible ou une carte
+
+Difficultées rencontrées : 
+alignement des div les une par rapport aux autres
+afficher correctement la carte OSM
